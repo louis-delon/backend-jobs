@@ -18,11 +18,11 @@ class Worker
     @status == 'interne'
   end
 
-  def price_in_weekend
-    medic? ? @price += SHIFT_PRICE[:medic] * 2 : @price += SHIFT_PRICE[:interne] * 2
+  def price_in_week
+    @price += medic? ? SHIFT_PRICE[:medic] : SHIFT_PRICE[:interne]
   end
 
-  def price_in_week
-    medic? ? @price += SHIFT_PRICE[:medic] : @price += SHIFT_PRICE[:interne]
+  def price_in_weekend
+    @price += medic? ? SHIFT_PRICE[:medic] * 2 : SHIFT_PRICE[:interne] * 2
   end
 end
