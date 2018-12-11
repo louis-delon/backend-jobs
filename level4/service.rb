@@ -52,11 +52,7 @@ private
 def price_computation(worker, shifts)
   # compute price for all shift that belong a worker
   shifts.each do |shift|
-    if shift.weekend?
-      worker.price_in_weekend
-    else
-      worker.price_in_week
-    end
+    shift.weekend? ? worker.price_in_weekend : worker.price_in_week
   end
 end
 
@@ -72,16 +68,8 @@ def set_commission
   #compute commission according to worker status
   @total_commission = 0
   @workers.map do |worker|
-    if worker.interim?
-      interim_commission(worker)
-    else
-      normal_commission(worker)
-    end
+    worker.interim? ? interim_commission(worker) : normal_commission(worker)
   end
-end
-
-def current_worker_shifts(worker)
-  @shifts.select { |shift| worker.id == shift.user_id }
 end
 
 def interim_commission(worker)
@@ -91,4 +79,8 @@ end
 
 def normal_commission(worker)
   @total_commission += worker.price * 0.05
+end
+
+def current_worker_shifts(worker)
+  @shifts.select { |shift| worker.id == shift.user_id }
 end

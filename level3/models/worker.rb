@@ -3,6 +3,11 @@ class Worker
   attr_reader :id, :first_name, :status
   attr_accessor :price
 
+  SHIFT_PRICE = {
+    medic: 270,
+    interne: 126
+  }.freeze
+
   def initialize(attributes = {})
     @id = attributes[:id]
     @first_name = attributes[:first_name]

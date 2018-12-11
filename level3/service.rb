@@ -3,11 +3,6 @@ require_relative'./models/shift'
 require_relative'./models/worker'
 require 'pry-byebug'
 
-SHIFT_PRICE = {
-  medic: 270,
-  interne: 126
-}.freeze
-
 def parsing(file)
   serialized_data = File.read(file)
   JSON.parse(serialized_data)
